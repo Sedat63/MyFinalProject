@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Business.Abstract;
+using Business.BusinessAspects.Autofac;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Validation;
@@ -32,6 +33,7 @@ namespace Business.Concrete
 	}
 
 		//Attribute type bu şekildedir.
+		[SecuredOperation("product.add,admin")] //Claim: İdda etmek
 		[ValidationAspect(typeof(ProductValidator))] //ad metodunu doğrula(validationaspect) ProductValidator kodlarını kullanarak
 		public IResult Add(Product product)
 		{
