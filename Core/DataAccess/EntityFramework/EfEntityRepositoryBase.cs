@@ -8,9 +8,9 @@ using System.Text;
 
 namespace Core.DataAccess.EntityFramework
 {
-	public class EfEntityRepositoryBase<TEntity, TContext>:IEntityRepository<TEntity>
-		where TEntity: class, IEntity, new()
-		where TContext: DbContext, new()
+	public class EfEntityRepositoryBase<TEntity, TContext> : IEntityRepository<TEntity>//hangi tabloyu verirsek
+		where TEntity : class, IEntity, new() //onun için IEntityRepository interfacesinin içindeki fonk.ları yapıyor
+		where TContext : DbContext, new() //yani T parametresinin içerisinde Entity gidiyor
 	{
 		public void Add(TEntity entity)
 		{
@@ -47,7 +47,8 @@ namespace Core.DataAccess.EntityFramework
 			using (TContext context = new TContext())
 			{
 				//filter eğer null ise soru işaretinden sonraki kısım çalışır.
-				//filter null değilse : (iki noktadan) sonraki kısım çalışır.
+				//filter null değilse : (iki noktadan) sonraki kısım çalışır.			
+				
 				return filter == null
 					? context.Set<TEntity>().ToList()
 					: context.Set<TEntity>().Where(filter).ToList();

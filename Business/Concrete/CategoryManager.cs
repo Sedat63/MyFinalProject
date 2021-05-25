@@ -22,6 +22,11 @@ namespace Business.Concrete
 			return new SuccessDataResult<List<Category>>(_categoryDal.GetAll());
 		}
 
+		public IDataResult<List<Category>> GetByCategoryId(int categoryId)
+		{
+			return new SuccessDataResult<List<Category>>(_categoryDal.GetAll(c => c.CategoryId == categoryId));
+		}
+
 		//Select * from Categories where CategoryId=3
 		public IDataResult<Category> GetById(int categoryId)
 		{
